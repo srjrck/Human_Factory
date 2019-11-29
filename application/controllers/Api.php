@@ -215,7 +215,6 @@ class Api extends CI_Controller {
   /*Patient API*/
   public function Patient($id = null){
     $request_method = $_SERVER['REQUEST_METHOD'];
-    print_r($request_method);die;
     $header = $this->input->request_headers();
     if ($request_method == "GET") {
       $res = $this->PatientModel->get_patient($id);

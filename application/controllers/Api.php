@@ -8,6 +8,7 @@ class Api extends CI_Controller {
     parent::__construct();
     $this->load->model('practitionermodel');
     $this->load->model('PatientModel');
+    $this->load->model('EncounterModel');
     $this->load->model('careteammodel');
     $this->load->model('fakeresourcemodel');
     $this->load->model('mymodel');
@@ -53,23 +54,23 @@ class Api extends CI_Controller {
                   } else {
                       http_response_code(400);
                       $res['resourcetype'] = "OperationOutcome";
-                      $res['issue']['severity'] = "error";
-                      $res['issue']['code'] = "TypeError";
-                      $res['issue']['details']['text'] = "Cann`t read property 'code' of undefined.";
+                      $res['issue'][0]['severity'] = "error";
+                      $res['issue'][0]['code'] = "TypeError";
+                      $res['issue'][0]['details']['text'] = "Cann`t read property 'code' of undefined.";
                   }
               } else {
                   http_response_code(400);
                   $res['resourcetype'] = "OperationOutcome";
-                  $res['issue']['severity'] = "error";
-                  $res['issue']['code'] = "resourcetype";
-                  $res['issue']['details']['text'] = "Sorry! The body that you passes in, is not valid according to practitioner structure.";
+                  $res['issue'][0]['severity'] = "error";
+                  $res['issue'][0]['code'] = "resourcetype";
+                  $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to practitioner structure.";
               }
           } else {
               http_response_code(400);
               $res['resourcetype'] = "OperationOutcome";
-              $res['issue']['severity'] = "error";
-              $res['issue']['code'] = "invalid json";
-              $res['issue']['details']['text'] = "Sorry! The body that you passes in, is not valid according to practitioner structure.";
+              $res['issue'][0]['severity'] = "error";
+              $res['issue'][0]['code'] = "invalid json";
+              $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to practitioner structure.";
           }
           $response = $this->json($res);
           $this->output->set_content_type('application/fhir+json');
@@ -77,18 +78,18 @@ class Api extends CI_Controller {
       } else if ($request_method == "PUT") {
           http_response_code(200);
           $res['resourcetype'] = "OperationOutcome";
-          $res['issue']['severity'] = "error";
-          $res['issue']['code'] = "AssertionError";
-          $res['issue']['details']['text'] = "Currently not implemented.";
+          $res['issue'][0]['severity'] = "error";
+          $res['issue'][0]['code'] = "AssertionError";
+          $res['issue'][0]['details']['text'] = "Currently not implemented.";
           $response = $this->json($res);
           $this->output->set_content_type('application/fhir+json');
           echo $response;
       } else {
           http_response_code(404);
           $res['resourcetype'] = "OperationOutcome";
-          $res['issue']['severity'] = "error";
-          $res['issue']['code'] = "invalid method";
-          $res['issue']['details']['text'] = "Please provide http method.";
+          $res['issue'][0]['severity'] = "error";
+          $res['issue'][0]['code'] = "invalid method";
+          $res['issue'][0]['details']['text'] = "Please provide http method.";
           $response = $this->json($res);
           $this->output->set_content_type('application/fhir+json');
           echo $response;
@@ -127,23 +128,23 @@ class Api extends CI_Controller {
                   } else {
                       http_response_code(400);
                       $res['resourcetype'] = "OperationOutcome";
-                      $res['issue']['severity'] = "error";
-                      $res['issue']['code'] = "TypeError";
-                      $res['issue']['details']['text'] = "Cann`t read property 'code' of undefined.";
+                      $res['issue'][0]['severity'] = "error";
+                      $res['issue'][0]['code'] = "TypeError";
+                      $res['issue'][0]['details']['text'] = "Cann`t read property 'code' of undefined.";
                   }
               } else {
                   http_response_code(400);
                   $res['resourcetype'] = "OperationOutcome";
-                  $res['issue']['severity'] = "error";
-                  $res['issue']['code'] = "resourcetype";
-                  $res['issue']['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
+                  $res['issue'][0]['severity'] = "error";
+                  $res['issue'][0]['code'] = "resourcetype";
+                  $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
               }
           } else {
               http_response_code(400);
               $res['resourcetype'] = "OperationOutcome";
-              $res['issue']['severity'] = "error";
-              $res['issue']['code'] = "invalid json";
-              $res['issue']['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
+              $res['issue'][0]['severity'] = "error";
+              $res['issue'][0]['code'] = "invalid json";
+              $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
           }
           $response = $this->json($res);
           $this->output->set_content_type('application/fhir+json');
@@ -163,23 +164,23 @@ class Api extends CI_Controller {
                   } else {
                       http_response_code(400);
                       $res['resourcetype'] = "OperationOutcome";
-                      $res['issue']['severity'] = "error";
-                      $res['issue']['code'] = "TypeError";
-                      $res['issue']['details']['text'] = "Cann`t read property 'code' of undefined.";
+                      $res['issue'][0]['severity'] = "error";
+                      $res['issue'][0]['code'] = "TypeError";
+                      $res['issue'][0]['details']['text'] = "Cann`t read property 'code' of undefined.";
                   }
               } else {
                   http_response_code(400);
                   $res['resourcetype'] = "OperationOutcome";
-                  $res['issue']['severity'] = "error";
-                  $res['issue']['code'] = "resourcetype";
-                  $res['issue']['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
+                  $res['issue'][0]['severity'] = "error";
+                  $res['issue'][0]['code'] = "resourcetype";
+                  $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
               }
           } else {
               http_response_code(400);
               $res['resourcetype'] = "OperationOutcome";
-              $res['issue']['severity'] = "error";
-              $res['issue']['code'] = "invalid json";
-              $res['issue']['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
+              $res['issue'][0]['severity'] = "error";
+              $res['issue'][0]['code'] = "invalid json";
+              $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
           }
           $response = $this->json($res);
           $this->output->set_content_type('application/fhir+json');
@@ -187,9 +188,9 @@ class Api extends CI_Controller {
       } else {
           http_response_code(200);
           $res['resourcetype'] = "OperationOutcome";
-          $res['issue']['severity'] = "error";
-          $res['issue']['code'] = "invalid method";
-          $res['issue']['details']['text'] = "Please provide http method.";
+          $res['issue'][0]['severity'] = "error";
+          $res['issue'][0]['code'] = "invalid method";
+          $res['issue'][0]['details']['text'] = "Please provide http method.";
           $response = $this->json($res);
           $this->output->set_content_type('application/fhir+json');
           echo $response;
@@ -253,7 +254,7 @@ class Api extends CI_Controller {
         $res['resourcetype'] = "OperationOutcome";
         $res['issue'][0]['severity'] = "error";
         $res['issue'][0]['code'] = "invalid json";
-        $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to practitioner structure.";
+        $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to patient structure.";
       }
       $response = $this->json($res);
       $this->output->set_content_type('application/fhir+json');
@@ -273,6 +274,68 @@ class Api extends CI_Controller {
       $res['issue'][0]['severity'] = "error";
       $res['issue'][0]['code'] = "invalid method";
       $res['issue'][0]['details']['text'] = "Please provide http method.";
+      $response = $this->json($res);
+      $this->output->set_content_type('application/fhir+json');
+      echo $response;
+    }
+  }
+
+  /*Encounter*/
+  public function Encounter($id = null){
+    $request_method = $_SERVER['REQUEST_METHOD'];
+    $header = $this->input->request_headers();
+    if($request_method == "GET") {
+      $res = $this->EncounterModel->get_encounter($id);
+      $response = $this->json($res);
+      $this->output->set_content_type('application/fhir+json');
+      echo $response;
+    }else if($request_method == "HEAD"){
+      $res = $this->EncounterModel->check_encounter($id);
+      echo $response;
+    }else if($request_method == "POST"){
+      if (isset($header['Content-Type']) && ($header['Content-Type'] == 'application/json' || $header['Content-Type'] == 'application/fhir+json')) {
+        $data = file_get_contents('php://input');
+        $dataArray = json_decode($data, true);
+        if (isset($dataArray['resourceType'])) {
+          if (trim($dataArray['resourceType']) == 'Encounter') {
+            $resouceData = array('type' => $dataArray['resourceType'],'json'=>$data);
+            $identifierData = $dataArray['identifier'];
+            //$nameData = $dataArray['name'];
+            //$telecomData = $dataArray['telecom'];
+
+            //echo '<pre>';print_r($resouceData);die;
+            $res = $this->EncounterModel->create_encounter($resouceData, $identifierData);
+            //$res = $this->EncounterModel->create_encounter($resouceData, $identifierData, $nameData, $telecomData);
+          }else{
+            http_response_code(400);
+            $res['resourcetype'] = "OperationOutcome";
+            $res['issue'][0]['severity'] = "error";
+            $res['issue'][0]['code'] = "TypeError";
+            $res['issue'][0]['details']['text'] = "Cann`t read encounter 'code' of undefined.";
+          }
+        }else{
+          http_response_code(400);
+          $res['resourcetype'] = "OperationOutcome";
+          $res['issue'][0]['severity'] = "error";
+          $res['issue'][0]['code'] = "resourcetype";
+          $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to care team structure.";
+        }
+      }else{
+        http_response_code(400);
+        $res['resourcetype'] = "OperationOutcome";
+        $res['issue'][0]['severity'] = "error";
+        $res['issue'][0]['code'] = "invalid json";
+        $res['issue'][0]['details']['text'] = "Sorry! The body that you passes in, is not valid according to encounter structure.";
+      }
+      $response = $this->json($res);
+      $this->output->set_content_type('application/fhir+json');
+      echo $response;
+    }else{
+      http_response_code(200);
+      $res['resourcetype'] = "OperationOutcome";
+      $res['issue'][0]['severity'] = "error";
+      $res['issue'][0]['code'] = "invalid method";
+      $res['issue'][0]['details']['text'] = "Please Encounter http method.";
       $response = $this->json($res);
       $this->output->set_content_type('application/fhir+json');
       echo $response;
